@@ -9,6 +9,110 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/@barba/core"></script>
+  <style>
+    /* Immediate fixes for about page */
+    .about-hero {
+      padding: 120px 0 60px;
+      text-align: center;
+    }
+    .about-founder {
+      padding: 60px 0;
+    }
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .founder-img-container {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .founder-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .founder-details h2 {
+      margin-bottom: 10px;
+    }
+    .founder-title {
+      display: block;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #c0966e;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .founder-bio p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    .values-section {
+      background-color: #222;
+      padding: 80px 0;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .value-item {
+      background-color: #111;
+      padding: 30px;
+      border-radius: 4px;
+      border-left: 3px solid #c0966e;
+    }
+    .value-number {
+      color: #c0966e;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    .experience-section {
+      padding: 80px 0;
+    }
+    .experience-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 50px;
+      margin-top: 40px;
+    }
+    .experience-text {
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    .experience-text p {
+      margin-bottom: 20px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .skill-item {
+      background-color: #222;
+      padding: 15px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .text-accent {
+      color: #c0966e;
+    }
+    .section-divider {
+      height: 1px;
+      background-color: rgba(255,255,255,0.1);
+      margin: 80px 0;
+    }
+  </style>
 </head>
 <body>
   <!-- Page Transition Overlay -->
@@ -42,96 +146,104 @@
 
   <div id="barba-wrapper">
     <div class="barba-container" data-barba="container" data-barba-namespace="about">
-      <!-- Page Header -->
-      <header class="page-header">
+      <!-- About Hero -->
+      <section class="about-hero">
         <div class="container">
-          <h1 class="reveal-text">About</h1>
+          <h1 class="reveal-text">About Ravenshawk Studio</h1>
+          <p class="header-description reveal-text-delay">A brand identity studio founded on the belief that powerful design can transform businesses and create meaningful connections.</p>
         </div>
-      </header>
+      </section>
 
-      <!-- About Content -->
-      <section class="about-content">
+      <!-- Founder Section -->
+      <section class="about-founder">
         <div class="container">
-          <div class="about-grid">
-            <div class="about-image slide-in">
-              <!-- Fixed image display with explicit dimensions -->
-              <img src="assets/images/AJ.jpg" alt="Ahmed Ismail, Creative Director" style="display: block; width: 100%; max-width: 400px; border-radius: 4px; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
-              <div class="image-caption">Ahmed Ismail, Founder & Creative Director</div>
+          <div class="founder-grid">
+            <div class="founder-img-container slide-in">
+              <img src="assets/images/AJ.jpg" alt="Ahmed Ismail, Founder & Creative Director" class="founder-img">
             </div>
-            <div class="about-text fade-in">
+            <div class="founder-details fade-in">
               <h2>Ahmed Ismail</h2>
-              <h3>Founder & Creative Director</h3>
-              <p>As the founder of Ravenshawk Studio, I bring over a decade of experience in brand identity design and visual storytelling to every project. My journey in design began with a passion for creating meaningful visual experiences that help brands connect with their audiences authentically.</p>
-              <p>The name "Ravenshawk" represents the balance of intelligence and vision that I bring to my design approach – combining strategic thinking with bold creative execution. Just as ravens symbolize wisdom and hawks represent sharp vision, I strive to blend thoughtful strategy with precise creative execution.</p>
-              <p>My design philosophy centers on creating meaningful visual identities that resonate with audiences and stand the test of time. I believe that great design is both functional and emotive, solving problems while creating authentic connections between brands and their audiences.</p>
-              <p>Throughout my career, I've had the privilege of working with brands across various industries, helping them establish distinctive visual identities that amplify their unique stories. My approach is collaborative and client-focused, ensuring that each project delivers results that exceed expectations.</p>
+              <span class="founder-title">Founder & Creative Director</span>
+              <div class="founder-bio">
+                <p>As the founder of Ravenshawk Studio, I bring over a decade of experience in brand identity design and visual storytelling to every project. My journey in design began with a passion for creating meaningful visual experiences that help brands connect with their audiences.</p>
+                <p>The name "Ravenshawk" represents the balance of intelligence and vision that I bring to my design approach – combining strategic thinking with bold creative execution. Just as ravens symbolize wisdom and hawks represent sharp vision, I strive to blend thoughtful strategy with precise creative execution.</p>
+                <p>My design philosophy centers on creating meaningful visual identities that resonate with audiences and stand the test of time. I believe that great design is both functional and emotive, solving problems while creating authentic connections.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Design Philosophy -->
-      <section class="design-philosophy">
+      <div class="section-divider"></div>
+
+      <!-- Studio Story -->
+      <section class="studio-story">
         <div class="container">
-          <h2 class="section-title reveal-text">Design Philosophy</h2>
-          <div class="philosophy-grid">
-            <div class="philosophy-item fade-in">
-              <h3>01. Strategic Foundation</h3>
+          <h2 class="section-title reveal-text">Our Story</h2>
+          <div class="story-content">
+            <div class="story-text fade-in">
+              <p>Ravenshawk Studio was founded in 2020 with a clear mission: to help businesses build brands that matter. After years working with agencies and in-house design teams, I recognized the need for a more personal, strategic approach to brand identity that prioritizes authentic storytelling and measurable results.</p>
+              <p>Our studio has grown from a solo practice to a collaborative team of specialists who share a passion for transformative design. While we've evolved in many ways, our core values remain unchanged: strategic thinking, creative excellence, and genuine partnership with every client.</p>
+              <p>Over the years, we've had the privilege of working with clients across diverse industries—from ambitious startups to established businesses—helping them establish distinctive brand identities that drive recognition and foster meaningful connections with their audiences.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values Section -->
+      <section class="values-section">
+        <div class="container">
+          <h2 class="section-title reveal-text">Our Values</h2>
+          <div class="values-grid">
+            <div class="value-item fade-in">
+              <div class="value-number">01</div>
+              <h3>Strategic Foundation</h3>
               <p>Every successful design begins with a deep understanding of your brand, audience, and objectives. This strategic foundation ensures that all creative decisions serve a clear purpose.</p>
             </div>
             
-            <div class="philosophy-item fade-in">
-              <h3>02. Bold Simplicity</h3>
+            <div class="value-item fade-in">
+              <div class="value-number">02</div>
+              <h3>Bold Simplicity</h3>
               <p>The most powerful identities often embrace bold simplicity – distilling complex ideas into clear, memorable visuals that communicate instantly and endure over time.</p>
             </div>
             
-            <div class="philosophy-item fade-in">
-              <h3>03. Cohesive Systems</h3>
-              <p>I create comprehensive brand systems rather than isolated assets, ensuring that every touchpoint works together to build a cohesive and recognizable presence.</p>
+            <div class="value-item fade-in">
+              <div class="value-number">03</div>
+              <h3>Cohesive Systems</h3>
+              <p>We create comprehensive brand systems rather than isolated assets, ensuring that every touchpoint works together to build a cohesive and recognizable presence.</p>
             </div>
             
-            <div class="philosophy-item fade-in">
-              <h3>04. Crafted Execution</h3>
-              <p>From conceptual development to final delivery, I maintain an unwavering attention to detail that elevates the quality and impact of every project.</p>
+            <div class="value-item fade-in">
+              <div class="value-number">04</div>
+              <h3>Crafted Execution</h3>
+              <p>From conceptual development to final delivery, we maintain an unwavering attention to detail that elevates the quality and impact of every project.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Professional Background -->
-      <section class="professional-background">
+      <!-- Experience & Expertise -->
+      <section class="experience-section">
         <div class="container">
-          <h2 class="section-title reveal-text">Professional Background</h2>
-          <div class="background-content">
-            <div class="background-text fade-in">
+          <h2 class="section-title reveal-text">Experience & Expertise</h2>
+          <div class="experience-content">
+            <div class="experience-text fade-in">
               <p>With a background in both design and marketing, I bring a holistic perspective to each project. Prior to founding Ravenshawk Studio, I worked with several leading creative agencies, honing my skills across diverse client portfolios.</p>
               <p>My educational background includes formal training in graphic design, complemented by continuous learning in brand strategy, user experience, and emerging design technologies.</p>
               <p>I've been fortunate to collaborate with clients ranging from ambitious startups to established enterprises, helping them develop brand identities that drive recognition and build lasting connections with their audiences.</p>
+              <p class="text-accent">Key areas of expertise:</p>
+              <div class="skills-grid">
+                <div class="skill-item">Brand Strategy Development</div>
+                <div class="skill-item">Logo & Identity Design</div>
+                <div class="skill-item">Typography & Custom Letterforms</div>
+                <div class="skill-item">Web & UI/UX Design</div>
+                <div class="skill-item">Print & Packaging Design</div>
+                <div class="skill-item">Art Direction</div>
+                <div class="skill-item">Motion Graphics</div>
+                <div class="skill-item">Social Media Content</div>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tools & Expertise -->
-      <section class="tools-expertise">
-        <div class="container">
-          <h2 class="section-title reveal-text">Tools & Expertise</h2>
-          <div class="expertise-content">
-            <div class="expertise-text fade-in">
-              <p>I leverage industry-standard tools and techniques to bring your brand vision to life, including:</p>
-              <ul>
-                <li>Adobe Creative Suite (Photoshop, Illustrator, InDesign, After Effects)</li>
-                <li>Figma & Sketch for UI/UX design</li>
-                <li>Brand strategy development</li>
-                <li>Typography & custom letterforms</li>
-                <li>Print production & packaging specifications</li>
-                <li>Motion graphics & animation fundamentals</li>
-                <li>Digital marketing integration</li>
-                <li>Social media content strategy</li>
-              </ul>
-              <a href="#" class="btn-secondary">Download Resume</a>
-            </div>
-            <div class="expertise-image slide-in">
+            <div class="experience-image fade-in">
               <div class="image-placeholder"></div>
             </div>
           </div>
