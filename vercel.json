@@ -13,14 +13,3 @@
     }
   ]
 }
-
-
-{
-  "rewrites": [
-    {
-      "source": "/home",
-      "destination": "/home.html"
-    }
-  ]
-}
-
