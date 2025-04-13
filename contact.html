@@ -81,7 +81,10 @@
             </div>
             
             <div class="contact-form slide-in">
-              <form id="contactForm">
+              <form action="https://formspree.io/f/moveryer" method="POST" autocomplete="off">
+                <!-- Optional redirect after submit -->
+                <!-- <input type="hidden" name="_redirect" value="https://www.rhawkstudio.com/thank-you.html"> -->
+
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" id="name" name="name" required>
@@ -94,7 +97,7 @@
                 
                 <div class="form-group">
                   <label for="project">Project Type</label>
-                  <select id="project" name="project">
+                  <select id="project" name="project" required>
                     <option value="" selected disabled>Select a service</option>
                     <option value="brand-identity">Brand Identity</option>
                     <option value="web-design">Web Design</option>
