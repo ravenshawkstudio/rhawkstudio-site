@@ -7,7 +7,6 @@
   --color-lighter-gray: #ddd;
   --color-white: #fff;
   --color-accent: #c0966e;
-  --font-serif: 'Playfair Display', serif;
   --font-sans: 'Helvetica Neue', sans-serif;
   --transition-speed: 0.3s;
   --spacing-xs: 10px;
@@ -57,7 +56,7 @@ img {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans-serif);
   font-weight: 500;
   line-height: 1.2;
   margin-bottom: var(--spacing-sm);
@@ -853,7 +852,7 @@ footer {
 }
 
 .process-number {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans-serif);
   font-size: 3rem;
   color: var(--color-accent);
   margin-bottom: var(--spacing-sm);
