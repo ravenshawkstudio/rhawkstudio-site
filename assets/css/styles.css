@@ -231,7 +231,7 @@ nav.scrolled {
 }
 
 .logo img {
-  width: 160px;
+  width: 220px;
   height: auto;
   transition: all var(--transition-speed) ease;
 }
