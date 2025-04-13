@@ -1,19 +1,12 @@
-// Add this at the top of your main.js file
-document.addEventListener('DOMContentLoaded', function() {
-  // Force all potentially hidden elements to show
-  setTimeout(function() {
-    document.querySelectorAll('.reveal-text, .reveal-text-delay, .fade-in, .fade-in-delay, .slide-in, .hero-content, .hero h1, .hero p, .container').forEach(el => {
-      el.style.visibility = 'visible !important';
-      el.style.opacity = '1 !important';
-      el.style.transform = 'none !important';
-      el.style.display = 'block !important';
-    });
-    console.log('Forced visibility of hidden elements');
-  }, 1000);
-});
-
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+  // Force all potentially hidden elements to show immediately
+  document.querySelectorAll('.reveal-text, .reveal-text-delay, .fade-in, .fade-in-delay, .slide-in').forEach(el => {
+    el.style.visibility = 'visible';
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+  
   // Initialize GSAP and ScrollTrigger
   gsap.registerPlugin(ScrollTrigger);
   
@@ -40,6 +33,16 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Add class to body after page is loaded
   document.body.classList.add('loaded');
+  
+  // Add a fallback to ensure everything is visible after 3 seconds, regardless of animation status
+  setTimeout(function() {
+    document.querySelectorAll('.reveal-text, .reveal-text-delay, .fade-in, .fade-in-delay, .slide-in, .hero-content, .hero h1, .hero p, .container').forEach(el => {
+      el.style.visibility = 'visible';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    console.log('Fallback visibility applied to all elements');
+  }, 3000);
 });
 
 // Custom cursor functionality
@@ -130,14 +133,6 @@ function initMobileMenu() {
 }
 
 // Initialize all animations
-function initAnimations() {
-  // Force all hidden elements to be visible
-  document.querySelectorAll('.reveal-text, .reveal-text-delay, .fade-in, .fade-in-delay, .slide-in').forEach(el => {
-    el.style.visibility = 'visible';
-    el.style.opacity = '1';
-    el.style.transform = 'none';
-  });
-  
 function initAnimations() {
   // Reveal text animation
   gsap.utils.toArray('.reveal-text').forEach(text => {
@@ -325,6 +320,13 @@ function barbaInit() {
         initAnimations();
         initPortfolioFilters();
         initContactForm();
+        
+        // Force visibility after page transition
+        document.querySelectorAll('.reveal-text, .reveal-text-delay, .fade-in, .fade-in-delay, .slide-in').forEach(el => {
+          el.style.visibility = 'visible';
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
       }
     }]
   });
