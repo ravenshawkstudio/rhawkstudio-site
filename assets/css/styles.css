@@ -28,7 +28,7 @@ body {
   background-color: var(--color-black);
   color: var(--color-white);
   line-height: 1.6;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.07em;
   overflow-x: hidden;
   font-weight: 700;
 }
