@@ -13,7 +13,7 @@
 <body>
   <!-- Page Transition Overlay -->
   <div class="transition-overlay"></div>
-  
+
   <!-- Cursor -->
   <div class="cursor-dot"></div>
   <div class="cursor-outline"></div>
@@ -57,13 +57,13 @@
             <div class="contact-info fade-in">
               <h2>Get in Touch</h2>
               <p>Ready to discuss your project? Fill out the form or contact me directly using the information below.</p>
-              
+
               <div class="contact-details">
                 <div class="contact-item">
                   <h3>Email</h3>
                   <p>ahmed@rhawkstudio.com</p>
                 </div>
-                
+
                 <div class="contact-item">
                   <h3>Social</h3>
                   <div class="social-links">
@@ -72,29 +72,26 @@
                     <a href="#" target="_blank">Behance</a>
                   </div>
                 </div>
-                
+
                 <div class="contact-item">
                   <h3>Schedule a Call</h3>
                   <a href="#" class="btn-secondary">Book Consultation</a>
                 </div>
               </div>
             </div>
-            
-            <div class="contact-form slide-in">
-              <form action="https://formspree.io/f/moveryer" method="POST" autocomplete="off">
-                <!-- Optional redirect after submit -->
-                <!-- <input type="hidden" name="_redirect" value="https://www.rhawkstudio.com/thank-you.html"> -->
 
+            <div class="contact-form slide-in">
+              <form id="contactForm" autocomplete="off">
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" id="name" name="name" required>
                 </div>
-                
+
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input type="email" id="email" name="email" required>
                 </div>
-                
+
                 <div class="form-group">
                   <label for="project">Project Type</label>
                   <select id="project" name="project" required>
@@ -106,14 +103,23 @@
                     <option value="other">Other</option>
                   </select>
                 </div>
-                
+
                 <div class="form-group">
                   <label for="message">Message</label>
                   <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                
+
                 <button type="submit" class="btn-primary">Send Message</button>
               </form>
+
+              <!-- Success Popup -->
+              <div class="form-success-overlay" id="formSuccessOverlay">
+                <div class="form-success-box">
+                  <h2>Thank you!</h2>
+                  <p>Your message has been sent.<br>I’ll get back to you shortly.</p>
+                  <button id="closeOverlay">Close</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -123,23 +129,23 @@
       <section class="faq-section">
         <div class="container">
           <h2 class="section-title reveal-text">Frequently Asked Questions</h2>
-          
+
           <div class="faq-grid">
             <div class="faq-item fade-in">
               <h3>What is your design process?</h3>
               <p>My design process typically includes discovery, strategy, concept development, refinement, and implementation. I work collaboratively at each stage to ensure your vision is brought to life.</p>
             </div>
-            
+
             <div class="faq-item fade-in">
               <h3>How long does a typical project take?</h3>
               <p>Project timelines vary based on scope and complexity. A brand identity project typically takes 4-6 weeks, while more comprehensive projects may take 2-3 months or more.</p>
             </div>
-            
+
             <div class="faq-item fade-in">
               <h3>Do you work with clients remotely?</h3>
               <p>Yes, I work with clients globally. My collaborative process adapts well to remote communication through video calls, email, and project management tools.</p>
             </div>
-            
+
             <div class="faq-item fade-in">
               <h3>What information do you need to start a project?</h3>
               <p>To begin, I'll need information about your business, goals, target audience, design preferences, and project timeline. I'll provide a detailed questionnaire to help gather this information.</p>
@@ -183,5 +189,37 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch("https://formspree.io/f/moveryer", {
+          method: "POST",
+          body: data,
+          headers: {
+            Accept: "application/json"
+          }
+        });
+
+        if (response.ok) {
+          document.getElementById("formSuccessOverlay").classList.add("visible");
+          form.reset();
+        } else {
+          alert("There was a problem. Please try again.");
+        }
+      } catch (error) {
+        alert("There was a problem submitting the form.");
+      }
+    });
+
+    document.getElementById("closeOverlay").addEventListener("click", function() {
+      document.getElementById("formSuccessOverlay").classList.remove("visible");
+    });
+  </script>
 </body>
 </html>
