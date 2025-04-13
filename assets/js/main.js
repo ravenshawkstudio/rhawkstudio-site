@@ -1,3 +1,17 @@
+// Add this at the top of your main.js file
+document.addEventListener('DOMContentLoaded', function() {
+  // Force all potentially hidden elements to show
+  setTimeout(function() {
+    document.querySelectorAll('.reveal-text, .reveal-text-delay, .fade-in, .fade-in-delay, .slide-in, .hero-content, .hero h1, .hero p, .container').forEach(el => {
+      el.style.visibility = 'visible !important';
+      el.style.opacity = '1 !important';
+      el.style.transform = 'none !important';
+      el.style.display = 'block !important';
+    });
+    console.log('Forced visibility of hidden elements');
+  }, 1000);
+});
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize GSAP and ScrollTrigger
