@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+  background-color: #111;
+  color: #fff;
+}
+.transition-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #000;
+  z-index: 9999;
+  pointer-events: none;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+header {
+  text-align: center;
+  padding: 100px 20px;
+}
+section {
+  padding: 100px 20px;
+}
