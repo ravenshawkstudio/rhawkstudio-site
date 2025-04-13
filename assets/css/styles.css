@@ -250,7 +250,7 @@ nav.scrolled .logo img {
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 1px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .nav-links a:after {
