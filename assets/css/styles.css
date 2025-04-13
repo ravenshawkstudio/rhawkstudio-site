@@ -8,7 +8,7 @@
   --color-white: #fff;
   --color-accent: #c0966e;
   --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Work Sans', sans-serif;
+  --font-sans: 'Helvetica Neue', sans-serif;
   --transition-speed: 0.3s;
   --spacing-xs: 10px;
   --spacing-sm: 20px;
@@ -29,8 +29,9 @@ body {
   background-color: var(--color-black);
   color: var(--color-white);
   line-height: 1.6;
+  letter-spacing: -80;
   overflow-x: hidden;
-  font-weight: 300;
+  font-weight: 700;
 }
 
 .container {
