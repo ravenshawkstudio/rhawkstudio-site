@@ -117,6 +117,14 @@ function initMobileMenu() {
 
 // Initialize all animations
 function initAnimations() {
+  // Force all hidden elements to be visible
+  document.querySelectorAll('.reveal-text, .reveal-text-delay, .fade-in, .fade-in-delay, .slide-in').forEach(el => {
+    el.style.visibility = 'visible';
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+  
+function initAnimations() {
   // Reveal text animation
   gsap.utils.toArray('.reveal-text').forEach(text => {
     gsap.fromTo(text, 
