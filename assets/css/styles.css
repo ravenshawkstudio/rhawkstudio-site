@@ -1082,3 +1082,54 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* Add these to your styles.css file */
+
+/* Professional Background Section */
+.professional-background {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-black);
+}
+
+.background-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.background-text p {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Enhanced About Image Styling */
+.about-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.about-image img {
+  transition: transform 0.5s ease;
+}
+
+.about-image:hover img {
+  transform: scale(1.03);
+}
+
+.image-caption {
+  margin-top: var(--spacing-xs);
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+/* Enhanced About Text */
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: var(--spacing-md);
+}
+
+.about-text h3 {
+  color: var(--color-accent);
+}
