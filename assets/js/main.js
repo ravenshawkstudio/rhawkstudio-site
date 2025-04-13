@@ -3,36 +3,66 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize GSAP and ScrollTrigger
   gsap.registerPlugin(ScrollTrigger);
   
-  // Initialize barba.js for page transitions
-  barbaInit();
-  
   // Initialize custom cursor
   initCursor();
   
   // Initialize mobile menu
   initMobileMenu();
   
+  // Initialize sticky navigation
+  initStickyNav();
+  
+  // Initialize barba.js for page transitions
+  barbaInit();
+  
   // Run all animations
   initAnimations();
+  
+  // Initialize portfolio filters
+  initPortfolioFilters();
+  
+  // Initialize contact form
+  initContactForm();
+  
+  // Add class to body after page is loaded
+  document.body.classList.add('loaded');
 });
 
 // Custom cursor functionality
 function initCursor() {
-  const cursor = document.querySelector('.cursor-dot');
+  const cursorDot = document.querySelector('.cursor-dot');
   const cursorOutline = document.querySelector('.cursor-outline');
   
+  if (!cursorDot || !cursorOutline) return;
+  
+  // Cursor follows mouse
   document.addEventListener('mousemove', function(e) {
-    gsap.to(cursor, {
-      x: e.clientX,
-      y: e.clientY,
-      duration: 0.1
-    });
+    const posX = e.clientX;
+    const posY = e.clientY;
     
-    gsap.to(cursorOutline, {
-      x: e.clientX,
-      y: e.clientY,
-      duration: 0.5
-    });
+    // Cursor dot follows cursor exactly
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+    
+    // Cursor outline follows with slight delay for smoothness
+    setTimeout(() => {
+      cursorOutline.style.left = `${posX}px`;
+      cursorOutline.style.top = `${posY}px`;
+    }, 80);
+    
+    // Show cursors after they've been positioned
+    setTimeout(() => {
+      cursorDot.style.opacity = "1";
+      cursorOutline.style.opacity = "1";
+    }, 100);
+  });
+  
+  // Hide cursor when cursor leaves window
+  document.addEventListener('mouseout', (e) => {
+    if (e.relatedTarget === null) {
+      cursorDot.style.opacity = "0";
+      cursorOutline.style.opacity = "0";
+    }
   });
   
   // Add hover effect for links
@@ -40,14 +70,35 @@ function initCursor() {
   
   links.forEach(link => {
     link.addEventListener('mouseenter', () => {
-      cursor.classList.add('cursor-active');
+      cursorDot.classList.add('cursor-active');
       cursorOutline.classList.add('cursor-active');
+      cursorOutline.style.width = '60px';
+      cursorOutline.style.height = '60px';
+      cursorOutline.style.borderColor = 'var(--color-copper)';
     });
     
     link.addEventListener('mouseleave', () => {
-      cursor.classList.remove('cursor-active');
+      cursorDot.classList.remove('cursor-active');
       cursorOutline.classList.remove('cursor-active');
+      cursorOutline.style.width = '40px';
+      cursorOutline.style.height = '40px';
+      cursorOutline.style.borderColor = 'var(--color-copper)';
     });
+  });
+}
+
+// Sticky Navigation on Scroll
+function initStickyNav() {
+  const nav = document.querySelector('nav');
+  
+  if (!nav) return;
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
   });
 }
 
@@ -56,91 +107,106 @@ function initMobileMenu() {
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   
-  if (menuToggle) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
-  }
+  if (!menuToggle || !navLinks) return;
+  
+  menuToggle.addEventListener('click', function() {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
 }
 
 // Initialize all animations
 function initAnimations() {
   // Reveal text animation
   gsap.utils.toArray('.reveal-text').forEach(text => {
-    gsap.from(text, {
-      y: 100,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power4.out",
-      scrollTrigger: {
-        trigger: text,
-        start: "top 85%",
-        toggleActions: "play none none none"
+    gsap.fromTo(text, 
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: text,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
       }
-    });
+    );
   });
   
   // Delayed reveal text animation
   gsap.utils.toArray('.reveal-text-delay').forEach(text => {
-    gsap.from(text, {
-      y: 80,
-      opacity: 0,
-      duration: 1.2,
-      delay: 0.3,
-      ease: "power4.out",
-      scrollTrigger: {
-        trigger: text,
-        start: "top 85%",
-        toggleActions: "play none none none"
+    gsap.fromTo(text, 
+      { y: 80, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        delay: 0.3,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: text,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
       }
-    });
+    );
   });
   
   // Fade in animation
   gsap.utils.toArray('.fade-in').forEach(item => {
-    gsap.from(item, {
-      opacity: 0,
-      y: 40,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: item,
-        start: "top 85%",
-        toggleActions: "play none none none"
+    gsap.fromTo(item, 
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
       }
-    });
+    );
   });
   
   // Delayed fade in animation
   gsap.utils.toArray('.fade-in-delay').forEach(item => {
-    gsap.from(item, {
-      opacity: 0,
-      y: 40,
-      duration: 1,
-      delay: 0.6,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: item,
-        start: "top 85%",
-        toggleActions: "play none none none"
+    gsap.fromTo(item, 
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.6,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
       }
-    });
+    );
   });
   
   // Slide in animation
   gsap.utils.toArray('.slide-in').forEach(item => {
-    gsap.from(item, {
-      x: 100,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: item,
-        start: "top 85%",
-        toggleActions: "play none none none"
+    gsap.fromTo(item, 
+      { x: 100, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
       }
-    });
+    );
   });
   
   // Enhanced profile image animation
@@ -171,18 +237,21 @@ function initAnimations() {
   // Enhanced caption animation for profile images
   const imageCaptions = document.querySelectorAll('.image-caption');
   imageCaptions.forEach(caption => {
-    gsap.from(caption, {
-      y: 20,
-      opacity: 0,
-      duration: 1,
-      delay: 0.8,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: caption,
-        start: "top 90%",
-        toggleActions: "play none none none"
+    gsap.fromTo(caption, 
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        delay: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: caption,
+          start: "top 90%",
+          toggleActions: "play none none none"
+        }
       }
-    });
+    );
   });
   
   // Add subtle parallax to hero section
@@ -203,48 +272,121 @@ function initAnimations() {
 
 // Barba.js page transitions
 function barbaInit() {
+  if (!window.barba) return;
+  
+  const overlay = document.querySelector('.transition-overlay');
+  
   barba.init({
     transitions: [{
-      name: 'default-transition',
-      leave(data) {
-        const done = this.async();
-        
-        gsap.to(data.current.container, {
-          opacity: 0,
-          y: 20,
-          duration: 0.5
-        });
-        
-        gsap.to('.transition-overlay', {
+      name: 'overlay-transition',
+      async leave(data) {
+        await gsap.to(overlay, {
           scaleY: 1,
-          transformOrigin: 'bottom',
           duration: 0.5,
-          onComplete: done
+          transformOrigin: 'top',
+          ease: "power3.inOut"
         });
       },
-      enter(data) {
-        const done = this.async();
-        
+      async enter(data) {
         window.scrollTo(0, 0);
         
-        gsap.from(data.next.container, {
-          opacity: 0,
-          y: 20,
-          duration: 0.5
+        await gsap.to(overlay, {
+          scaleY: 0,
+          duration: 0.5,
+          transformOrigin: 'bottom',
+          ease: "power3.inOut"
         });
         
-        gsap.to('.transition-overlay', {
-          scaleY: 0,
-          transformOrigin: 'top',
-          duration: 0.5,
-          delay: 0.3,
-          onComplete: done
-        });
-      },
-      after() {
         // Reinitialize animations after page change
+        initCursor();
+        initMobileMenu();
         initAnimations();
+        initPortfolioFilters();
+        initContactForm();
       }
     }]
+  });
+}
+
+// Portfolio Filters
+function initPortfolioFilters() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  
+  if (filterButtons.length === 0 || portfolioItems.length === 0) return;
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      // Get filter value
+      const filterValue = button.getAttribute('data-filter');
+      
+      // Filter items
+      portfolioItems.forEach(item => {
+        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+          item.style.display = 'block';
+          
+          // Animate item back in
+          gsap.fromTo(item, 
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
+          );
+        } else {
+          // Animate item out
+          gsap.to(item, { 
+            opacity: 0, 
+            y: 20, 
+            duration: 0.5, 
+            ease: "power3.out",
+            onComplete: () => {
+              item.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
+  });
+}
+
+// Contact Form Handling
+function initContactForm() {
+  const contactForm = document.getElementById('contactForm');
+  
+  if (!contactForm) return;
+  
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Here you would typically handle the form submission
+    // For this demo, we'll just show a success message
+    
+    // Get form data
+    const formData = new FormData(contactForm);
+    const formValues = Object.fromEntries(formData.entries());
+    
+    // Clear form
+    contactForm.reset();
+    
+    // Show success message
+    const successMessage = document.createElement('div');
+    successMessage.className = 'success-message';
+    successMessage.innerHTML = `
+      <h3>Thank you for your message!</h3>
+      <p>I'll get back to you as soon as possible.</p>
+    `;
+    
+    // Replace form with success message
+    contactForm.parentNode.replaceChild(successMessage, contactForm);
+    
+    // Animate success message
+    gsap.fromTo(successMessage, 
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
+    );
   });
 }
